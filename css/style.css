@@ -14,10 +14,24 @@
   --white: #ffffff;
   --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  
+  /* 响应式布局变量 */
+  --header-height: 70px;
+  --header-height-mobile: 60px;
+  --content-padding: 100px 0;
+  --content-padding-tablet: 70px 0;
+  --content-padding-mobile: 40px 0;
+  --container-padding: 0 20px;
+  --hero-padding-top: 150px;
+  --hero-padding-top-tablet: 100px;
+  --hero-padding-top-mobile: 80px;
+  --section-gap: 40px;
+  --section-gap-mobile: 25px;
 }
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -25,10 +39,12 @@ body {
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--white);
+  overflow-x: hidden;
+  width: 100%;
 }
 
 section {
-  padding: 100px 0;
+  padding: var(--content-padding);
   position: relative;
 }
 
@@ -50,7 +66,7 @@ a:hover {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: var(--container-padding);
 }
 
 /* 导航栏 */
@@ -59,16 +75,23 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--header-height);
   background-color: var(--white);
   box-shadow: var(--shadow);
   z-index: 1000;
+  transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  height: 100%;
 }
 
 .logo {
@@ -89,28 +112,68 @@ header {
 .nav-links {
   display: flex;
   list-style: none;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-links li {
   margin-left: 30px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
   color: var(--text-color);
   font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-links a:hover {
   color: var(--primary-color);
 }
 
+.language-menu {
+  display: flex;
+  align-items: center;
+}
+
 .language-selector {
-  margin-left: 20px;
-  padding: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px 30px 8px 12px;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: var(--white);
   cursor: pointer;
+  max-width: 150px;
+  font-size: 14px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+}
+
+.language-selector:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .mobile-menu-btn {
@@ -119,23 +182,34 @@ header {
   border: none;
   font-size: 24px;
   cursor: pointer;
+  color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: relative;
+  z-index: 1001;
 }
 
 /* 英雄区 */
 .hero {
-  padding: 150px 0 80px;
+  padding-top: var(--hero-padding-top);
+  padding-bottom: 80px;
   background: linear-gradient(to bottom, #f8f9fa, #ffffff);
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero h2 {
-  font-size: 48px;
+  font-size: clamp(24px, 5vw, 48px);
   margin-bottom: 20px;
   font-weight: 600;
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: clamp(16px, 2.5vw, 20px);
   max-width: 700px;
   margin: 0 auto 40px;
   color: var(--light-text);
@@ -145,7 +219,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
+  gap: var(--section-gap);
   margin-top: 50px;
   flex-wrap: wrap;
 }
@@ -552,10 +626,7 @@ footer {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  gap: 50px;
+  gap: 20px;
 }
 
 .footer-link {
@@ -563,10 +634,11 @@ footer {
   font-size: 16px;
   text-decoration: none;
   transition: all 0.3s ease;
-  padding: 5px 15px;
+  padding: 8px 15px;
   position: relative;
   opacity: 0.9;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .footer-link:hover {
@@ -579,29 +651,11 @@ footer {
   margin-right: 8px;
 }
 
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-
-/* 响应式设计 */
+/* 自适应布局 - 使用CSS网格和媒体查询 */
 @media (max-width: 991px) {
-  section {
-    padding: 70px 0;
-  }
-  
-  .hero {
-    padding: 120px 0 70px;
-  }
-  
-  .hero h2 {
-    font-size: 36px;
-  }
-  
-  .hero p {
-    font-size: 18px;
+  :root {
+    --content-padding: var(--content-padding-tablet);
+    --hero-padding-top: var(--hero-padding-top-tablet);
   }
   
   .hero-content {
@@ -610,12 +664,22 @@ footer {
   }
   
   .hero-features {
-    margin-top: 40px;
+    margin-top: var(--section-gap);
     padding: 0 20px;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: var(--header-height-mobile);
+    --section-gap: var(--section-gap-mobile);
+  }
+  
+  header {
+    height: var(--header-height-mobile);
+  }
+
   .navbar {
     flex-wrap: wrap;
   }
@@ -625,80 +689,63 @@ footer {
   }
   
   .nav-links {
-    flex-basis: 100%;
+    position: fixed;
+    top: var(--header-height-mobile);
+    left: 0;
+    right: 0;
     flex-direction: column;
-    display: none;
-    margin-top: 20px;
+    background-color: var(--white);
+    padding: 20px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    height: auto;
+    align-items: flex-start;
+    z-index: 999;
   }
   
   .nav-links.active {
-    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
   
   .nav-links li {
     margin-left: 0;
-    margin-bottom: 15px;
+    width: 100%;
+    padding: 0 20px;
+    height: auto;
   }
   
-  .language-selector {
-    margin-left: 0;
-    margin-top: 15px;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .slide-caption {
-    position: relative;
-  }
-  
-  .social-links {
-    flex-wrap: wrap;
-  }
-  
-  .social-link {
-    margin-bottom: 10px;
-  }
-  
-  .hero-features {
-    flex: 0 0 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  section {
-    padding: 50px 0;
-  }
-  
-  .hero {
-    padding: 100px 0 50px;
-  }
-  
-  .hero h2 {
-    font-size: 28px;
-  }
-  
-  .hero p {
+  .nav-links a {
+    display: block;
+    padding: 12px 0;
+    width: 100%;
     font-size: 16px;
   }
   
-  .btn {
-    display: block;
-    margin: 10px auto;
-    width: 80%;
+  .nav-links a::after {
+    display: none;
   }
   
-  .section-header h2 {
-    font-size: 28px;
+  .language-menu {
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 10px;
   }
   
-  .phone-mockup {
+  .language-selector {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 30px 12px 12px;
+    margin-left: 0;
+    font-size: 16px;
+  }
+  
+  .phone-slider-container {
     max-width: 250px;
-  }
-  
-  .privacy-summary {
-    padding: 25px;
   }
   
   .hero-feature-item {
@@ -711,5 +758,34 @@ footer {
   
   .hero-feature-text p {
     font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --content-padding: var(--content-padding-mobile); 
+  }
+  
+  .hero {
+    padding-top: calc(var(--header-height-mobile) + 20px);
+  }
+  
+  .btn {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+  }
+  
+  .section-header h2 {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  
+  .section-header p {
+    font-size: clamp(14px, 3vw, 16px);
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 15px;
   }
 }
