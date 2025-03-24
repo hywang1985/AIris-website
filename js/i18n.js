@@ -127,13 +127,17 @@ function updatePageContent() {
     }
   });
 
-  // 更新页面标题
+  // 更新页面标题和属性
   document.querySelectorAll('[data-i18n-attr]').forEach(element => {
     const data = element.getAttribute('data-i18n-attr').split(',');
     if (data.length === 2) {
       const attr = data[0];
       const key = data[1];
-      element.setAttribute(attr, t(key));
+      if (attr === 'title') {
+        document.title = t(key);
+      } else {
+        element.setAttribute(attr, t(key));
+      }
     }
   });
   
