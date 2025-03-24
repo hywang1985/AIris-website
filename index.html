@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIris - 照片美学AI评分</title>
+  <link rel="icon" href="images/app_icon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="images/app_icon.png" alt="AIris Logo">
+          <h1>AIris</h1>
+        </div>
+        
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links">
+          <li><a href="#home" data-i18n="nav_home"></a></li>
+          <li><a href="#smart-features" data-i18n="nav_features"></a></li>
+          <select id="language-switcher" class="language-selector">
+            <option value="en_us">English</option>
+            <option value="zh_cn">简体中文</option>
+          </select>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 英雄区 -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>AIris - Photo Aesthetic Rating<br>AIris 照片美学AI评分</h2>
+      <p>Find your best photos<br>发现您照片中的最佳作品</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn" data-i18n="btn_download"></a>
+      </div>
+      <div class="hero-content">
+        <div class="hero-image">
+          <div class="phone-slider-container">
+            <div class="phone-slider">
+              <div class="phone-slide active">
+                <img src="images/iphone/en_us/iphone_en_us1.png" alt="AIris Screenshot 1" data-img-i18n="iphone/1">
+                <div class="slide-caption">
+                  <h3>智能照片评分</h3>
+                  <p>通过AI分析照片的构图、色彩和清晰度</p>
+                </div>
+              </div>
+              <div class="phone-slide">
+                <img src="images/iphone/en_us/iphone_en_us2.jpg" alt="AIris Screenshot 2" data-img-i18n="iphone/2">
+                <div class="slide-caption">
+                  <h3>相似照片分组</h3>
+                  <p>智能对比找出最佳照片</p>
+                </div>
+              </div>
+              <div class="phone-slide">
+                <img src="images/iphone/en_us/iphone_en_us3.png" alt="AIris Screenshot 3" data-img-i18n="iphone/3">
+                <div class="slide-caption">
+                  <h3>简洁直观的界面</h3>
+                  <p>用户友好的设计让照片管理更轻松</p>
+                </div>
+              </div>
+              <div class="phone-slide">
+                <img src="images/iphone/en_us/iphone_en_us4.png" alt="AIris Screenshot 4" data-img-i18n="iphone/4">
+                <div class="slide-caption">
+                  <h3>强大的清理功能</h3>
+                  <p>快速释放设备存储空间</p>
+                </div>
+              </div>
+              <div class="phone-slide">
+                <img src="images/iphone/en_us/iphone_en_us5.png" alt="AIris Screenshot 5" data-img-i18n="iphone/5">
+                <div class="slide-caption">
+                  <h3>个性化设置</h3>
+                  <p>根据您的偏好自定义应用体验</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="slider-controls">
+              <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+              <div class="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+              </div>
+              <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-features">
+          <h3 id="smart-features" data-i18n="features_title">Smart Features</h3>
+          <div class="hero-features-list">
+            <div class="hero-feature-item">
+              <i class="fas fa-star feature-icon"></i>
+              <div class="hero-feature-text">
+                <h4 data-i18n="feature_scoring">AI Aesthetic Scoring</h4>
+                <p data-i18n="feature_scoring_desc">Our local AI analyzes and rates your photos based on composition, lighting, and clarity</p>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <i class="fas fa-images feature-icon"></i>
+              <div class="hero-feature-text">
+                <h4 data-i18n="feature_grouping">Similar Photo Grouping</h4>
+                <p data-i18n="feature_grouping_desc">Intelligently identifies and groups similar photos to help you pick the best ones</p>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <i class="fas fa-trash-alt feature-icon"></i>
+              <div class="hero-feature-text">
+                <h4 data-i18n="feature_cleanup">Quick Cleanup</h4>
+                <p data-i18n="feature_cleanup_desc">Easily remove duplicates, blurry images and free up valuable storage space</p>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <i class="fas fa-lock feature-icon"></i>
+              <div class="hero-feature-text">
+                <h4 data-i18n="feature_privacy">Privacy Protection</h4>
+                <p data-i18n="feature_privacy_desc">All processing is done entirely on your device. No photo data is ever uploaded</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <a href="privacy.html" class="footer-link" data-i18n="nav_privacy">Privacy Policy</a>
+        <a href="mailto:AIris@qiubangtech.com" class="footer-link"><i class="fas fa-envelope"></i> AIris@qiubangtech.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS 文件 -->
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
